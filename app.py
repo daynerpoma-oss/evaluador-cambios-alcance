@@ -276,6 +276,7 @@ if st.button(
     # Evitar valores negativos
     prediccion = max(0, prediccion)
 
+
     # ========================================================
     # CLASIFICACIÓN DE IMPACTO
     # ========================================================
@@ -399,38 +400,44 @@ importancia_grafico = importancia.sort_values(
     ascending=True
 )
 
-fig, ax = plt.subplots(figsize=(6.5, 3.0))
+# Contenedor central para reducir el ancho visual
+grafico_col1, grafico_col2, grafico_col3 = st.columns([1, 3, 1])
 
-ax.barh(
-    importancia_grafico["Variable"],
-    importancia_grafico["Importancia"]
-)
+with grafico_col2:
 
-ax.set_xlabel("Importancia por permutación", fontsize=9)
-ax.set_ylabel("Variable", fontsize=9)
-ax.set_title(
-    "Importancia de las variables en el modelo",
-    fontsize=12
-)
+    fig, ax = plt.subplots(figsize=(6.0, 3.0))
 
-ax.tick_params(axis="both", labelsize=8)
+    ax.barh(
+        importancia_grafico["Variable"],
+        importancia_grafico["Importancia"]
+    )
 
-plt.tight_layout()
+    ax.set_xlabel(
+        "Importancia por permutación",
+        fontsize=9
+    )
 
-st.pyplot(fig, use_container_width=False)
+    ax.set_ylabel(
+        "Variable",
+        fontsize=9
+    )
 
-ax.barh(
-    importancia_grafico["Variable"],
-    importancia_grafico["Importancia"]
-)
+    ax.set_title(
+        "Importancia de las variables en el modelo",
+        fontsize=12
+    )
 
-ax.set_xlabel("Importancia por permutación")
-ax.set_ylabel("Variable")
-ax.set_title("Importancia de las variables en el modelo")
+    ax.tick_params(
+        axis="both",
+        labelsize=8
+    )
 
-plt.tight_layout()
+    plt.tight_layout()
 
-st.pyplot(fig, use_container_width=False)
+    st.pyplot(
+        fig,
+        use_container_width=True
+    )
 
 
 # ============================================================
@@ -444,38 +451,43 @@ st.caption(
     "para desarrollar el modelo."
 )
 
-fig2, ax2 = plt.subplots(figsize=(6.5, 3.0))
+grafico_col1, grafico_col2, grafico_col3 = st.columns([1, 3, 1])
 
-ax2.hist(
-    df["Dias_adicionales"],
-    bins=15
-)
+with grafico_col2:
 
-ax2.set_xlabel("Días adicionales", fontsize=9)
-ax2.set_ylabel("Número de cambios", fontsize=9)
-ax2.set_title(
-    "Distribución de días adicionales",
-    fontsize=12
-)
+    fig2, ax2 = plt.subplots(figsize=(6.0, 3.0))
 
-ax2.tick_params(axis="both", labelsize=8)
+    ax2.hist(
+        df["Dias_adicionales"],
+        bins=15
+    )
 
-plt.tight_layout()
+    ax2.set_xlabel(
+        "Días adicionales",
+        fontsize=9
+    )
 
-st.pyplot(fig2, use_container_width=False)
+    ax2.set_ylabel(
+        "Número de cambios",
+        fontsize=9
+    )
 
-ax2.hist(
-    df["Dias_adicionales"],
-    bins=15
-)
+    ax2.set_title(
+        "Distribución de días adicionales",
+        fontsize=12
+    )
 
-ax2.set_xlabel("Días adicionales")
-ax2.set_ylabel("Número de cambios")
-ax2.set_title("Distribución de días adicionales")
+    ax2.tick_params(
+        axis="both",
+        labelsize=8
+    )
 
-plt.tight_layout()
+    plt.tight_layout()
 
-st.pyplot(fig2, use_container_width=False)
+    st.pyplot(
+        fig2,
+        use_container_width=True
+    )
 
 
 # ============================================================
