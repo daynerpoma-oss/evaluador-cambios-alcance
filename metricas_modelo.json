@@ -1,0 +1,9 @@
+{
+    "MAE_prueba": 3.05,
+    "RMSE_prueba": 4.14,
+    "R2_prueba": 0.453,
+    "MAE_CV_5fold": 3.06,
+    "RMSE_CV_5fold": 4.0,
+    "R2_CV_5fold": 0.482,
+    "n_casos": 320
+}
