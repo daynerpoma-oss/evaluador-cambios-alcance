@@ -399,7 +399,25 @@ importancia_grafico = importancia.sort_values(
     ascending=True
 )
 
-fig, ax = plt.subplots(figsize=(7.5, 3.5))
+fig, ax = plt.subplots(figsize=(6.5, 3.0))
+
+ax.barh(
+    importancia_grafico["Variable"],
+    importancia_grafico["Importancia"]
+)
+
+ax.set_xlabel("Importancia por permutación", fontsize=9)
+ax.set_ylabel("Variable", fontsize=9)
+ax.set_title(
+    "Importancia de las variables en el modelo",
+    fontsize=12
+)
+
+ax.tick_params(axis="both", labelsize=8)
+
+plt.tight_layout()
+
+st.pyplot(fig, use_container_width=False)
 
 ax.barh(
     importancia_grafico["Variable"],
@@ -426,7 +444,25 @@ st.caption(
     "para desarrollar el modelo."
 )
 
-fig2, ax2 = plt.subplots(figsize=(7.5, 3.5))
+fig2, ax2 = plt.subplots(figsize=(6.5, 3.0))
+
+ax2.hist(
+    df["Dias_adicionales"],
+    bins=15
+)
+
+ax2.set_xlabel("Días adicionales", fontsize=9)
+ax2.set_ylabel("Número de cambios", fontsize=9)
+ax2.set_title(
+    "Distribución de días adicionales",
+    fontsize=12
+)
+
+ax2.tick_params(axis="both", labelsize=8)
+
+plt.tight_layout()
+
+st.pyplot(fig2, use_container_width=False)
 
 ax2.hist(
     df["Dias_adicionales"],
