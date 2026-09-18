@@ -18,6 +18,60 @@ st.set_page_config(
 
 
 # ============================================================
+# ESTILO VISUAL — VERSIÓN COMPACTA
+# ============================================================
+
+st.markdown(
+    """
+    <style>
+
+    /* Título principal */
+    h1 {
+        font-size: 2.4rem !important;
+        margin-bottom: 0.4rem !important;
+    }
+
+    /* Títulos de sección */
+    h2 {
+        font-size: 1.65rem !important;
+        margin-top: 0.8rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    h3 {
+        font-size: 1.3rem !important;
+        margin-top: 0.6rem !important;
+        margin-bottom: 0.4rem !important;
+    }
+
+    /* Valores de los KPI */
+    [data-testid="stMetricValue"] {
+        font-size: 1.9rem !important;
+    }
+
+    [data-testid="stMetricLabel"] {
+        font-size: 0.9rem !important;
+    }
+
+    /* Reducir espacios generales */
+    .block-container {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+
+    /* Reducir espacio de divisores */
+    hr {
+        margin-top: 1rem !important;
+        margin-bottom: 1rem !important;
+    }
+
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+
+# ============================================================
 # CARGA DE ARCHIVOS
 # ============================================================
 
@@ -345,7 +399,7 @@ importancia_grafico = importancia.sort_values(
     ascending=True
 )
 
-fig, ax = plt.subplots(figsize=(9, 5))
+fig, ax = plt.subplots(figsize=(7.5, 3.5))
 
 ax.barh(
     importancia_grafico["Variable"],
@@ -356,7 +410,9 @@ ax.set_xlabel("Importancia por permutación")
 ax.set_ylabel("Variable")
 ax.set_title("Importancia de las variables en el modelo")
 
-st.pyplot(fig)
+plt.tight_layout()
+
+st.pyplot(fig, use_container_width=False)
 
 
 # ============================================================
@@ -370,7 +426,7 @@ st.caption(
     "para desarrollar el modelo."
 )
 
-fig2, ax2 = plt.subplots(figsize=(9, 5))
+fig2, ax2 = plt.subplots(figsize=(7.5, 3.5))
 
 ax2.hist(
     df["Dias_adicionales"],
@@ -381,7 +437,9 @@ ax2.set_xlabel("Días adicionales")
 ax2.set_ylabel("Número de cambios")
 ax2.set_title("Distribución de días adicionales")
 
-st.pyplot(fig2)
+plt.tight_layout()
+
+st.pyplot(fig2, use_container_width=False)
 
 
 # ============================================================
